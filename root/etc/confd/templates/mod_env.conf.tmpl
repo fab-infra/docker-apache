@@ -1,0 +1,8 @@
+# Global environment variables configuration (mod_env)
+# http://httpd.apache.org/docs/2.4/en/mod/mod_env.html
+
+<IfModule env_module>
+	SetEnv SERVER_ENV {{getv "/server/env" "production"}}
+	SetEnv APPLICATION_ENV {{getv "/server/env" "production"}}
+	SetEnv RAILS_ENV production
+</IfModule>

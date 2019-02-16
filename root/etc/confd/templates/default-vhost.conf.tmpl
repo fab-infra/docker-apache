@@ -1,0 +1,29 @@
+# Default Virtual Host
+
+<VirtualHost _default_:8080>
+	ServerName {{getv "/server/name" "localhost"}}
+	DocumentRoot /srv/www/htdocs/
+</VirtualHost>
+
+<IfDefine SSL>
+<IfDefine !NOSSL>
+<VirtualHost _default_:8443>
+	ServerName {{getv "/server/name" "localhost"}}
+	DocumentRoot /srv/www/htdocs/
+	
+	SSLEngine on
+	SSLProtocol all -SSLv2 -SSLv3
+	SSLCipherSuite ALL:!MD5:!aNULL:!ADH:!eNULL:!LOW:!EXP:RC4+RSA:+HIGH:+MEDIUM
+	SSLCertificateFile /etc/apache2/ssl.crt/default.crt
+	SSLCertificateKeyFile /etc/apache2/ssl.key/default.key
+
+	<Files ~ "\.(cgi|shtml|phtml|php|php3|php5|php7?)$">
+		SSLOptions +StdEnvVars
+	</Files>
+
+	SetEnvIf User-Agent ".*MSIE.*" \
+		 nokeepalive ssl-unclean-shutdown \
+		 downgrade-1.0 force-response-1.0
+</VirtualHost>
+</IfDefine>
+</IfDefine>

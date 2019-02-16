@@ -1,0 +1,6 @@
+[template]
+src = "mod_env.conf.tmpl"
+dest = "/etc/apache2/conf.d/mod_env.conf"
+keys = [
+    "/server/env"
+]
