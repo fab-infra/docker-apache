@@ -2,14 +2,38 @@
 
 <VirtualHost _default_:8080>
 	ServerName {{getv "/server/name" "localhost"}}
-	DocumentRoot /srv/www/htdocs/
+	DocumentRoot {{getv "/default/docroot" "/srv/www/htdocs"}}
+
+	<Directory "{{getv "/default/docroot" "/srv/www/htdocs"}}">
+		Options FollowSymLinks
+		AllowOverride All
+		<IfModule mod_access_compat.c>
+			Order deny,allow
+			Allow from all
+		</IfModule>
+		<IfModule mod_authz_core.c>
+			Require all granted
+		</IfModule>
+	</Directory>
 </VirtualHost>
 
 <IfDefine SSL>
 <IfDefine !NOSSL>
 <VirtualHost _default_:8443>
 	ServerName {{getv "/server/name" "localhost"}}
-	DocumentRoot /srv/www/htdocs/
+	DocumentRoot {{getv "/default/docroot" "/srv/www/htdocs"}}
+
+	<Directory "{{getv "/default/docroot" "/srv/www/htdocs"}}">
+		Options FollowSymLinks
+		AllowOverride All
+		<IfModule mod_access_compat.c>
+			Order deny,allow
+			Allow from all
+		</IfModule>
+		<IfModule mod_authz_core.c>
+			Require all granted
+		</IfModule>
+	</Directory>
 	
 	SSLEngine on
 	SSLProtocol all -SSLv2 -SSLv3

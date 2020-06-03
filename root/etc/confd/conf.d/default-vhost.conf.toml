@@ -2,5 +2,6 @@
 src = "default-vhost.conf.tmpl"
 dest = "/etc/apache2/conf.d/default-vhost.conf"
 keys = [
-    "/server/name"
+    "/server/name",
+    "/default/docroot"
 ]
