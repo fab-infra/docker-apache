@@ -1,0 +1,15 @@
+# Listen: Allows you to bind Apache to specific IP addresses and/or
+# ports. See also the <VirtualHost> directive.
+# http://httpd.apache.org/docs/2.4/mod/mpm_common.html#listen
+
+# HTTP port
+Listen {{getv "/listen/http/port" "8080"}}
+
+<IfDefine SSL>
+	<IfDefine !NOSSL>
+	<IfModule mod_ssl.c>
+		# HTTPS port
+		Listen {{getv "/listen/https/port" "8443"}}
+	</IfModule>
+	</IfDefine>
+</IfDefine>

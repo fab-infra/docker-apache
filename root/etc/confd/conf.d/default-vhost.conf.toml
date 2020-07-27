@@ -3,5 +3,7 @@ src = "default-vhost.conf.tmpl"
 dest = "/etc/apache2/conf.d/default-vhost.conf"
 keys = [
     "/server/name",
-    "/default/docroot"
+    "/default/docroot",
+    "/listen/http/port",
+    "/listen/https/port"
 ]

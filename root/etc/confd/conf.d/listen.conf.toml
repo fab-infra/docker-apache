@@ -1,0 +1,7 @@
+[template]
+src = "listen.conf.tmpl"
+dest = "/etc/apache2/listen.conf"
+keys = [
+    "/listen/http/port",
+    "/listen/https/port"
+]

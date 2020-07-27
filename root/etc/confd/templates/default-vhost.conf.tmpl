@@ -1,6 +1,6 @@
 # Default Virtual Host
 
-<VirtualHost _default_:8080>
+<VirtualHost _default_:{{getv "/listen/http/port" "8080"}}>
 	ServerName {{getv "/server/name" "localhost"}}
 	DocumentRoot {{getv "/default/docroot" "/srv/www/htdocs"}}
 
@@ -19,7 +19,7 @@
 
 <IfDefine SSL>
 <IfDefine !NOSSL>
-<VirtualHost _default_:8443>
+<VirtualHost _default_:{{getv "/listen/https/port" "8443"}}>
 	ServerName {{getv "/server/name" "localhost"}}
 	DocumentRoot {{getv "/default/docroot" "/srv/www/htdocs"}}
 
