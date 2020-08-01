@@ -24,7 +24,7 @@ COPY ./root /
 RUN chmod +x /run.sh &&\
 	confd -onetime -backend env &&\
 	mkdir -p /etc/apache2/sysconfig.d &&\
-	chmod -R a+rwX /etc/apache2/conf.d /etc/apache2/sysconfig.d /var/log/apache2 /var/run &&\
+	chmod -R a+rwX /etc/apache2 /var/log/apache2 /var/run &&\
 	chmod +x /usr/sbin/start_apache2
 
 # Ports
