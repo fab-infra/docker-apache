@@ -1,17 +1,16 @@
-# Apache HTTPD server based on openSUSE Leap 15.2
-FROM ghcr.io/fab-infra/base-image:opensuse15.2
+# Apache HTTPD server based on openSUSE Leap 15.3
+FROM ghcr.io/fab-infra/base-image:opensuse15.3
 
 # Arguments
 ARG HTTPD_MPM="worker"
 ARG HTTPD_MODULES="access_compat authnz_ldap deflate filter headers http2 ldap proxy proxy_ajp proxy_balancer proxy_fcgi proxy_http proxy_wstunnel remoteip rewrite slotmem_shm status version vhost_alias"
-ARG HTTPD_FLAGS="HTTP2"
+ARG HTTPD_FLAGS=""
 
 # Apache HTTPD
 RUN zypper in -y apache2 \
 	apache2-prefork apache2-worker apache2-event \
 	apache2-icons-oxygen \
-	apache2-utils \
-	check-create-certificate &&\
+	apache2-utils &&\
 	zypper clean -a
 
 # Configuration
