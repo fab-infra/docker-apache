@@ -26,4 +26,4 @@ RUN confd -onetime -backend env &&\
 	chmod +x /usr/sbin/start_apache2
 
 # Ports
-EXPOSE 8080
+EXPOSE 8080 8443
