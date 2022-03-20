@@ -1,0 +1,6 @@
+[template]
+src = "mod_log_config.conf.tmpl"
+dest = "/etc/apache2/conf.d/mod_log_config.conf"
+keys = [
+    "/apache/error/log"
+]

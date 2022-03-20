@@ -1,11 +1,14 @@
-#!/bin/sh -ex
+#!/bin/sh -e
 
-# Set default environment
-export SERVER_NAME="${SERVER_NAME:-$(hostname -f)}"
-export SERVER_ENV="${SERVER_ENV:-production}"
-export DEFAULT_DOCROOT="${DEFAULT_DOCROOT:-/srv/www/htdocs}"
-export LISTEN_HTTP_PORT="${LISTEN_HTTP_PORT:-8080}"
-export LISTEN_HTTPS_PORT="${LISTEN_HTTPS_PORT:-8443}"
+# Update sysconfig from environment variables
+for FILE in /etc/sysconfig/apache2; do
+	grep '^[^#].*=' "$FILE" | while IFS='=' read KEY VALUE; do
+		if [ -n "${!KEY+x}" ]; then
+			echo "Updating $FILE: $KEY=${!KEY}" 1>&2
+			sed -i "s#^$KEY=.*\$#$KEY=\"${!KEY}\"#g" "$FILE"
+		fi
+	done
+done
 
 # Generate configuration
 confd -onetime -backend env

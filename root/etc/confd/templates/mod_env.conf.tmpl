@@ -4,5 +4,5 @@
 <IfModule env_module>
 	SetEnv SERVER_ENV {{getv "/server/env" "production"}}
 	SetEnv APPLICATION_ENV {{getv "/server/env" "production"}}
-	SetEnv RAILS_ENV production
+	SetEnv RAILS_ENV {{getv "/server/env" "production"}}
 </IfModule>
