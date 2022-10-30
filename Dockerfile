@@ -1,5 +1,5 @@
-# Apache HTTPD server based on openSUSE Leap 15.3
-FROM ghcr.io/fab-infra/base-image:opensuse15.3
+# Apache HTTPD server based on openSUSE Leap 15.4
+FROM ghcr.io/fab-infra/base-image:opensuse15.4
 
 # Environment
 ENV APACHE_MPM="worker" \
