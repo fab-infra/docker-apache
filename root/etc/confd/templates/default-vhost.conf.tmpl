@@ -36,12 +36,12 @@
 	</Directory>
 	
 	SSLEngine on
-	SSLProtocol all -SSLv2 -SSLv3
-	SSLCipherSuite ALL:!MD5:!aNULL:!ADH:!eNULL:!LOW:!EXP:RC4+RSA:+HIGH:+MEDIUM
+	SSLProtocol all -SSLv3 -TLSv1 -TLSv1.1
+	SSLCipherSuite PROFILE=SYSTEM
 	SSLCertificateFile /etc/apache2/ssl.crt/default.crt
 	SSLCertificateKeyFile /etc/apache2/ssl.key/default.key
 
-	<Files ~ "\.(cgi|shtml|phtml|php|php3|php5|php7?)$">
+	<Files ~ "\.(cgi|shtml|phtml|php|php3|php5|php7|php8?)$">
 		SSLOptions +StdEnvVars
 	</Files>
 
